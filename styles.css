@@ -281,13 +281,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   TOP UTILITY BAR
+   TOP UTILITY BAR (SINGLE-LINE COORDINATES & DIRECT CHANNELS)
    ========================================================================== */
 .top-bar {
   background-color: var(--color-dark-surface);
   color: rgba(255, 255, 255, 0.82);
   font-size: 0.75rem;
-  padding: 0.28rem 0;
+  padding: 0.32rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
@@ -295,43 +295,67 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
 }
 
 .top-bar-info {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  gap: 1.25rem;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .top-bar-item {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  white-space: nowrap;
 }
 
-.top-bar-item svg {
+.top-bar-item svg,
+.top-bar-item i {
   color: var(--color-tertiary);
   width: 13px;
   height: 13px;
+  flex-shrink: 0;
 }
 
-.top-bar-actions {
+.top-bar-socials {
   display: flex;
   align-items: center;
   gap: 1.15rem;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.top-bar-actions a {
-  color: rgba(255, 255, 255, 0.75);
+.top-bar-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgba(255, 255, 255, 0.78);
   font-size: 0.75rem;
   font-weight: 500;
+  transition: color var(--trans-fast);
 }
 
-.top-bar-actions a:hover {
+.top-bar-social-link svg,
+.top-bar-social-link i {
   color: var(--color-tertiary);
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  transition: color var(--trans-fast);
+}
+
+.top-bar-social-link:hover {
+  color: var(--color-tertiary-light);
+}
+
+.top-bar-social-link:hover svg,
+.top-bar-social-link:hover i {
+  color: #ffffff;
 }
 
 /* ==========================================================================
@@ -416,15 +440,16 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
 .nav-link {
-  font-size: 0.85rem;
+  font-size: 0.835rem;
   font-weight: 600;
   color: var(--color-dark);
   padding: 0.25rem 0;
   position: relative;
+  white-space: nowrap;
   transition: color var(--trans-fast);
 }
 
@@ -446,6 +471,45 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+.nav-cta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: 0.25rem;
+}
+
+.btn-icon-nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #1877F2;
+  color: #ffffff !important;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--trans-fast), background-color var(--trans-fast), box-shadow var(--trans-fast);
+  flex-shrink: 0;
+}
+
+.btn-icon-nav:hover {
+  background-color: #0c63d4;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(24, 119, 242, 0.35);
+  color: #ffffff !important;
+}
+
+.nav-btn-primary {
+  white-space: nowrap;
+  padding: 0.42rem 0.9rem;
+  font-size: 0.825rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .mobile-toggle {
@@ -1457,6 +1521,19 @@ h1, h2, h3, h4, h5, h6 {
    RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1080px) {
+  .top-bar-loc {
+    display: none;
+  }
+  .nav-menu {
+    gap: 0.85rem;
+  }
+  .nav-link {
+    font-size: 0.8rem;
+  }
+  .nav-btn-primary {
+    padding: 0.38rem 0.75rem;
+    font-size: 0.8rem;
+  }
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -1489,9 +1566,24 @@ h1, h2, h3, h4, h5, h6 {
     flex-direction: column;
     align-items: flex-start;
     padding: 2.5rem;
-    gap: 1.5rem;
+    gap: 1.25rem;
     transition: left var(--trans-normal);
     box-shadow: var(--shadow-xl);
+    overflow-y: auto;
+  }
+  .nav-cta-group {
+    margin-left: 0;
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+  .nav-cta-group .btn-icon-nav {
+    display: none;
+  }
+  .nav-cta-group .nav-btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
   }
   .nav-menu.active {
     left: 0;

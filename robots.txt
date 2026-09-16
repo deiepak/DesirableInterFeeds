@@ -1,0 +1,15 @@
+# robots.txt for Desirable Inter-Feeds (Pvt) Ltd
+# Website: https://desirableinterfeeds.co.zw
+
+User-agent: *
+Allow: /
+
+# Exclude private, temporary, or scratch files
+Disallow: /scratch/
+Disallow: /.*
+
+# Geographic & Canonical Host
+Host: https://desirableinterfeeds.co.zw
+
+# XML Sitemap Location
+Sitemap: https://desirableinterfeeds.co.zw/sitemap.xml

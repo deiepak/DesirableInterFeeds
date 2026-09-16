@@ -25,9 +25,10 @@ function initMobileMenu() {
     });
 
     // Close menu when clicking links
-    document.querySelectorAll('.nav-link').forEach(link => {
+    document.querySelectorAll('.nav-menu a').forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
       });
     });
   }
