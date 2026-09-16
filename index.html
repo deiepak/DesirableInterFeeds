@@ -23,6 +23,9 @@
   
   <!-- Standalone Local PDF Generation Engine -->
   <script src="pdf-lib.min.js"></script>
+  
+  <!-- Google reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdvHL8tAAAAAElM5jPlvVIIY2_PeLeDvdPXLpd9"></script>
 </head>
 <body>
 
@@ -1024,7 +1027,9 @@
       <!-- Quick Corporate Inquiry -->
       <div class="inquiry-panel">
         <h4>Direct Corporate Inquiry</h4>
-        <form id="corporateInquiryForm" onsubmit="alert('Thank you! Your corporate inquiry has been logged. An executive representative will reach out to you shortly.'); return false;">
+        <form id="corporateInquiryForm" action="https://formspree.io/f/mrpbznba" method="POST">
+          <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+          <div id="inquiryFormStatus" style="display:none; margin-bottom: 0.85rem; padding: 0.75rem 1rem; border-radius: var(--radius-xs); font-size: 0.85rem; font-weight: 600;"></div>
           <div class="field-group" style="margin-bottom: 0.85rem;">
             <label class="field-label" style="color: #ffffff;">Contact Person *</label>
             <input type="text" name="name" class="field-input" placeholder="Enter your full name" required>

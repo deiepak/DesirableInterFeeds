@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabExplorer();
   initFormInteractivity();
   initPdfGenerator();
+  initInquiryForm();
 });
 
 /* --------------------------------------------------------------------------
@@ -397,3 +398,95 @@ async function generateFilledPdf(data) {
   // Export filled PDF
   return await pdfDoc.save();
 }
+
+/* --------------------------------------------------------------------------
+   6. FORMSPREE CORPORATE INQUIRY DISPATCH & RECAPTCHA V3
+   -------------------------------------------------------------------------- */
+function initInquiryForm() {
+  const form = document.getElementById('corporateInquiryForm');
+  const statusDiv = document.getElementById('inquiryFormStatus');
+  if (!form) return;
+
+  const RECAPTCHA_SITE_KEY = '6LdvHL8tAAAAAElM5jPlvVIIY2_PeLeDvdPXLpd9';
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnHtml = submitBtn.innerHTML;
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Dispatching Inquiry...</span>';
+    if (statusDiv) {
+      statusDiv.style.display = 'none';
+      statusDiv.innerText = '';
+    }
+
+    try {
+      // Execute Google reCAPTCHA v3
+      let recaptchaToken = '';
+      if (typeof grecaptcha !== 'undefined') {
+        try {
+          await new Promise((resolve) => grecaptcha.ready(resolve));
+          recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'inquiry_submit' });
+          const tokenInput = document.getElementById('g-recaptcha-response');
+          if (tokenInput) tokenInput.value = recaptchaToken;
+        } catch (rcErr) {
+          console.warn('reCAPTCHA execution note:', rcErr);
+        }
+      }
+
+      const formData = new FormData(form);
+      if (recaptchaToken) {
+        formData.set('g-recaptcha-response', recaptchaToken);
+      }
+
+      const response = await fetch(form.action || 'https://formspree.io/f/mrpbznba', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        if (statusDiv) {
+          statusDiv.style.display = 'block';
+          statusDiv.style.backgroundColor = 'rgba(56, 168, 62, 0.2)';
+          statusDiv.style.border = '1px solid #38A83E';
+          statusDiv.style.color = '#a3f3a8';
+          statusDiv.innerHTML = 'Thank you! Your corporate inquiry has been logged. An executive representative will reach out shortly.';
+        }
+        form.reset();
+      } else {
+        const result = await response.json().catch(() => ({}));
+        let errorMsg = 'Failed to send inquiry. Please verify your details or reach us directly via WhatsApp.';
+        if (result && result.errors && result.errors.length) {
+          errorMsg = result.errors.map(err => err.message).join(', ');
+        }
+        if (statusDiv) {
+          statusDiv.style.display = 'block';
+          statusDiv.style.backgroundColor = 'rgba(235, 87, 87, 0.2)';
+          statusDiv.style.border = '1px solid #eb5757';
+          statusDiv.style.color = '#ffb3b3';
+          statusDiv.innerText = errorMsg;
+        }
+      }
+    } catch (err) {
+      console.error('Inquiry submission error:', err);
+      if (statusDiv) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.backgroundColor = 'rgba(235, 87, 87, 0.2)';
+        statusDiv.style.border = '1px solid #eb5757';
+        statusDiv.style.color = '#ffb3b3';
+        statusDiv.innerText = 'Network error during transmission. Please try again or chat with us on WhatsApp.';
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+  });
+}
+
