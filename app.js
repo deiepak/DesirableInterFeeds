@@ -311,38 +311,39 @@ async function generateFilledPdf(data) {
   drawText(page1, data.caretakerName, 200, 453.89);
   drawText(page1, data.caretakerPhone, 115, 431.89);
 
-  // Section 2: Feed Table
+  // Section 2: Feed Table (Column 3 starts at x=369.67, underline at y=350.5)
+  const qtyColX = 380;
   if (data.cattleFeedCheck) {
     drawCheck(page1, 33, 351.89);
-    drawText(page1, data.cattleFeedQty, 345, 351.89);
+    drawText(page1, data.cattleFeedQty, qtyColX, 352.5);
   }
   if (data.pigFeedCheck) {
     drawCheck(page1, 33, 333.89);
-    drawText(page1, data.pigFeedQty, 345, 333.89);
+    drawText(page1, data.pigFeedQty, qtyColX, 334.5);
   }
   if (data.broilerFeedCheck) {
     drawCheck(page1, 33, 315.89);
-    drawText(page1, data.broilerFeedQty, 345, 315.89);
+    drawText(page1, data.broilerFeedQty, qtyColX, 316.5);
   }
   if (data.layersFeedCheck) {
     drawCheck(page1, 33, 297.89);
-    drawText(page1, data.layersFeedQty, 345, 297.89);
+    drawText(page1, data.layersFeedQty, qtyColX, 298.5);
   }
   if (data.rabbitFeedCheck) {
     drawCheck(page1, 33, 279.89);
-    drawText(page1, data.rabbitFeedQty, 345, 279.89);
+    drawText(page1, data.rabbitFeedQty, qtyColX, 280.5);
   }
   if (data.goatFeedCheck) {
     drawCheck(page1, 33, 261.89);
-    drawText(page1, data.goatFeedQty, 345, 261.89);
+    drawText(page1, data.goatFeedQty, qtyColX, 262.5);
   }
   if (data.fishFeedCheck) {
     drawCheck(page1, 33, 243.89);
-    drawText(page1, data.fishFeedQty, 345, 243.89);
+    drawText(page1, data.fishFeedQty, qtyColX, 244.5);
   }
   if (data.customFeedCheck) {
     drawCheck(page1, 33, 225.89);
-    drawText(page1, data.customFeedQty, 345, 225.89);
+    drawText(page1, data.customFeedQty, qtyColX, 226.5);
   }
 
   /* ==================== PAGE 2 OVERLAYS ==================== */
