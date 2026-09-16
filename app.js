@@ -49,15 +49,31 @@ function initTabExplorer() {
       btn.classList.add('active');
 
       // Filter division cards
+      let visibleCount = 0;
       divisionCards.forEach(card => {
         const cardCategory = card.getAttribute('data-category');
         if (targetCategory === 'all' || cardCategory === targetCategory) {
           card.style.display = 'flex';
           card.style.animation = 'fadeIn 0.4s ease forwards';
+          visibleCount++;
         } else {
           card.style.display = 'none';
         }
       });
+
+      const gridContainer = document.querySelector('.division-cards-grid');
+      if (gridContainer) {
+        if (visibleCount % 2 !== 0) {
+          gridContainer.classList.add('is-odd-count');
+        } else {
+          gridContainer.classList.remove('is-odd-count');
+        }
+        if (visibleCount === 1) {
+          gridContainer.classList.add('has-single-card');
+        } else {
+          gridContainer.classList.remove('has-single-card');
+        }
+      }
     });
   });
 }
