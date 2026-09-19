@@ -40,44 +40,56 @@
     .full-gallery-item {
       position: relative;
       border-radius: 12px;
-      overflow: hidden;
       box-shadow: var(--shadow-sm);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       background: var(--color-surface);
       height: 250px;
+      cursor: pointer;
     }
     .full-gallery-item:hover {
       transform: translateY(-5px);
       box-shadow: var(--shadow-md);
+      z-index: 10;
     }
     .full-gallery-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s ease;
+      border-radius: 12px;
+      transition: opacity 0.3s ease;
     }
-    .full-gallery-item:hover .full-gallery-img {
-      transform: scale(1.05);
-    }
-    .gallery-caption {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
-      color: white;
-      padding: 1.5rem 1rem 1rem;
-      font-size: 0.95rem;
-      font-weight: 600;
+    
+    /* Dynamic floating tooltip styles */
+    .gallery-tooltip {
+      position: fixed;
+      background: rgba(18, 48, 74, 0.95);
+      color: #fff;
+      padding: 1.25rem;
+      border-radius: 8px;
+      max-width: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      pointer-events: none;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      visibility: hidden;
+      transform: translate(-50%, 10px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      z-index: 9999;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
-    .full-gallery-item:hover .gallery-caption {
+    .gallery-tooltip.show {
       opacity: 1;
-      transform: translateY(0);
+      visibility: visible;
+      transform: translate(-50%, 0);
     }
+    .gallery-tooltip-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-tertiary-light);
+      margin-bottom: 0.5rem;
+    }
+
     .back-nav {
       margin-top: 2rem;
       display: inline-flex;
@@ -105,39 +117,17 @@
 
   <section class="section">
     <div class="container">
-      <div class="full-gallery-grid">
-        <!-- Gallery Items generated from Media folder -->
-        <div class="full-gallery-item"><img src="Media/chicken coops.jpeg" alt="Chicken Coops" class="full-gallery-img"><div class="gallery-caption">Chicken Coops</div></div>
-        <div class="full-gallery-item"><img src="Media/chicken farms.jpeg" alt="Chicken Farms" class="full-gallery-img"><div class="gallery-caption">Chicken Farms</div></div>
-        <div class="full-gallery-item"><img src="Media/chickens.jpeg" alt="Premium Chickens" class="full-gallery-img"><div class="gallery-caption">Premium Chickens</div></div>
-        <div class="full-gallery-item"><img src="Media/clients being delivered premium dustless feed.jpeg" alt="Feed Delivery" class="full-gallery-img"><div class="gallery-caption">Premium Dustless Feed Delivery</div></div>
-        <div class="full-gallery-item"><img src="Media/cows.jpeg" alt="Cattle Care" class="full-gallery-img"><div class="gallery-caption">Premium Cattle</div></div>
-        <div class="full-gallery-item"><img src="Media/day old chicks.jpeg" alt="Day Old Chicks" class="full-gallery-img"><div class="gallery-caption">Day Old Chicks</div></div>
-        <div class="full-gallery-item"><img src="Media/delivering lambs.jpeg" alt="Delivering Lambs" class="full-gallery-img"><div class="gallery-caption">Delivering Lambs</div></div>
-        <div class="full-gallery-item"><img src="Media/discussions.jpeg" alt="Team Discussions" class="full-gallery-img"><div class="gallery-caption">Team Discussions</div></div>
-        <div class="full-gallery-item"><img src="Media/feeds.jpeg" alt="Livestock Feeds" class="full-gallery-img"><div class="gallery-caption">Nutritional Livestock Feeds</div></div>
-        <div class="full-gallery-item"><img src="Media/formula making.jpeg" alt="Formula Making" class="full-gallery-img"><div class="gallery-caption">Formula Making</div></div>
-        <div class="full-gallery-item"><img src="Media/goats.jpeg" alt="Goats" class="full-gallery-img"><div class="gallery-caption">Premium Goats</div></div>
-        <div class="full-gallery-item"><img src="Media/guidance.jpeg" alt="Expert Guidance" class="full-gallery-img"><div class="gallery-caption">Expert Agronomy Guidance</div></div>
-        <div class="full-gallery-item"><img src="Media/insights sharing.jpeg" alt="Insights Sharing" class="full-gallery-img"><div class="gallery-caption">Insights Sharing</div></div>
-        <div class="full-gallery-item"><img src="Media/lab based operations.jpeg" alt="Lab Operations" class="full-gallery-img"><div class="gallery-caption">Lab Based Operations</div></div>
-        <div class="full-gallery-item"><img src="Media/logistics operations.jpeg" alt="Logistics Operations" class="full-gallery-img"><div class="gallery-caption">Logistics Operations</div></div>
-        <div class="full-gallery-item"><img src="Media/meat products output generation.jpeg" alt="Meat Products" class="full-gallery-img"><div class="gallery-caption">Meat Products Output</div></div>
-        <div class="full-gallery-item"><img src="Media/meeting clients.jpeg" alt="Meeting Clients" class="full-gallery-img"><div class="gallery-caption">Meeting Clients</div></div>
-        <div class="full-gallery-item"><img src="Media/on spot weight of chickens.jpeg" alt="Chicken Weighing" class="full-gallery-img"><div class="gallery-caption">On Spot Weight of Chickens</div></div>
-        <div class="full-gallery-item"><img src="Media/premium breed goats.jpeg" alt="Premium Breed Goats" class="full-gallery-img"><div class="gallery-caption">Premium Breed Goats</div></div>
-        <div class="full-gallery-item"><img src="Media/premium cow care.jpeg" alt="Premium Cow Care" class="full-gallery-img"><div class="gallery-caption">Premium Cow Care</div></div>
-        <div class="full-gallery-item"><img src="Media/premium farm management.jpeg" alt="Farm Management" class="full-gallery-img"><div class="gallery-caption">Premium Farm Management</div></div>
-        <div class="full-gallery-item"><img src="Media/premium hay.jpeg" alt="Premium Hay" class="full-gallery-img"><div class="gallery-caption">Premium Hay</div></div>
-        <div class="full-gallery-item"><img src="Media/proper lab infra.jpeg" alt="Lab Infrastructure" class="full-gallery-img"><div class="gallery-caption">Proper Lab Infrastructure</div></div>
-        <div class="full-gallery-item"><img src="Media/seminar.jpeg" alt="Training Seminar" class="full-gallery-img"><div class="gallery-caption">Training Seminar</div></div>
-        <div class="full-gallery-item"><img src="Media/solar.jpeg" alt="Solar Energy" class="full-gallery-img"><div class="gallery-caption">Solar Energy</div></div>
-        <div class="full-gallery-item"><img src="Media/solar 2.jpeg" alt="Solar Installation" class="full-gallery-img"><div class="gallery-caption">Solar Installation</div></div>
-        <div class="full-gallery-item"><img src="Media/vet surgery.jpeg" alt="Vet Surgery" class="full-gallery-img"><div class="gallery-caption">Vet Surgery</div></div>
-        <div class="full-gallery-item"><img src="Media/young animals raising.jpeg" alt="Raising Young Animals" class="full-gallery-img"><div class="gallery-caption">Raising Young Animals</div></div>
+      <div class="full-gallery-grid" id="galleryGrid">
+        <!-- JS will populate this -->
       </div>
     </div>
   </section>
+
+  <!-- The Tooltip -->
+  <div class="gallery-tooltip" id="galleryTooltip">
+    <div class="gallery-tooltip-title" id="tooltipTitle"></div>
+    <div id="tooltipDesc"></div>
+  </div>
 
   <footer class="footer">
     <div class="container">
@@ -149,6 +139,88 @@
 
   <script>
     lucide.createIcons();
+
+    const galleryData = [
+      { src: "Media/chicken coops.jpeg", title: "State-of-the-art Chicken Coops", desc: "Our modern coops are designed with proper ventilation and space to ensure the maximum comfort and health of our poultry flocks." },
+      { src: "Media/chicken farms.jpeg", title: "Expansive Chicken Farms", desc: "Operating large-scale poultry farming with strict biosecurity measures and automated feeding systems for optimal growth." },
+      { src: "Media/chickens.jpeg", title: "Premium Chickens", desc: "Healthy, disease-free broiler and layer chickens raised on our highly nutritious, custom-milled feeds." },
+      { src: "Media/clients being delivered premium dustless feed.jpeg", title: "Direct Feed Delivery", desc: "Ensuring our clients receive freshly milled, premium dustless feeds right at their farm gates without delays." },
+      { src: "Media/cows.jpeg", title: "Premium Cattle Care", desc: "Our beef and dairy cattle are pasture-raised and supplemented with our high-protein dairy meal and fattening pellets." },
+      { src: "Media/day old chicks.jpeg", title: "Healthy Day-Old Chicks", desc: "Supplying vaccinated and highly resilient day-old chicks to jumpstart robust poultry operations for our contract farmers." },
+      { src: "Media/delivering lambs.jpeg", title: "Safe Lamb Deliveries", desc: "Expert veterinary oversight ensuring safe lambing and high survival rates among our premium sheep breeds." },
+      { src: "Media/discussions.jpeg", title: "Strategic Discussions", desc: "Our agronomy and advisory teams regularly meet to discuss farm performance and continuous operational improvements." },
+      { src: "Media/feeds.jpeg", title: "Nutritional Formulations", desc: "Scientific stock feed formulations engineered for high Feed Conversion Ratios across all livestock categories." },
+      { src: "Media/formula making.jpeg", title: "Precision Formula Making", desc: "Every batch of feed is meticulously balanced and tested in-house to guarantee consistent nutritional profiles." },
+      { src: "Media/goats.jpeg", title: "Premium Goats", desc: "Raising resilient goat breeds supported by mineral-rich supplements to ensure excellent health and meat quality." },
+      { src: "Media/guidance.jpeg", title: "Expert Guidance", desc: "We provide hands-on agronomic support and advisory services to help our partners maximize their agricultural yields." },
+      { src: "Media/insights sharing.jpeg", title: "Knowledge Sharing", desc: "Fostering a community of learning where industry insights and modern farming techniques are shared openly." },
+      { src: "Media/lab based operations.jpeg", title: "Advanced Lab Operations", desc: "Strict quality control protocols in our modern laboratories ensure all feeds and inputs meet HACCP and ISO standards." },
+      { src: "Media/logistics operations.jpeg", title: "Heavy Logistics", desc: "Our robust transport and haulage fleet guarantees efficient nationwide distribution of agricultural inputs and machinery." },
+      { src: "Media/meat products output generation.jpeg", title: "Meat Processing", desc: "Generating high-quality meat outputs through ethical processing and stringent food safety protocols." },
+      { src: "Media/meeting clients.jpeg", title: "Client Engagements", desc: "Building strong, long-term relationships through transparent face-to-face consultations and contract reviews." },
+      { src: "Media/on spot weight of chickens.jpeg", title: "On-Spot Weighing", desc: "Regular field weigh-ins to track Feed Conversion Ratios and ensure optimal growth trajectories." },
+      { src: "Media/premium breed goats.jpeg", title: "Specialized Breeds", desc: "Investing in superior genetics for our small ruminants to deliver exceptional meat yields and adaptability." },
+      { src: "Media/premium cow care.jpeg", title: "Dairy & Beef Care", desc: "Comprehensive veterinary care and nutritional plans keep our cattle in peak physical condition year-round." },
+      { src: "Media/premium farm management.jpeg", title: "Farm Management", desc: "Deploying industry best practices and smart technologies for end-to-end management of agricultural operations." },
+      { src: "Media/premium hay.jpeg", title: "Quality Forage", desc: "Harvesting and storing premium hay to provide excellent roughage for our ruminant feeding programs." },
+      { src: "Media/proper lab infra.jpeg", title: "World-Class Labs", desc: "Equipped with state-of-the-art testing technology to analyze feed toxicity, sensory metrics, and microbial safety." },
+      { src: "Media/seminar.jpeg", title: "Training Seminars", desc: "Empowering farmers through educational seminars on modern husbandry, feed management, and financial planning." },
+      { src: "Media/solar.jpeg", title: "Solar Power Solutions", desc: "Installing heavy-duty off-grid solar systems to power irrigation, milling plants, and rural farm infrastructure." },
+      { src: "Media/solar 2.jpeg", title: "Sustainable Energy", desc: "Reducing operational costs and our carbon footprint with reliable, high-capacity solar PV installations." },
+      { src: "Media/vet surgery.jpeg", title: "Veterinary Surgery", desc: "Professional on-site veterinary interventions and surgical procedures to maintain the highest standards of animal welfare." },
+      { src: "Media/young animals raising.jpeg", title: "Raising Young Stock", desc: "Specialized care, creep feeds, and controlled environments for the healthy development of young livestock." }
+    ];
+
+    const grid = document.getElementById('galleryGrid');
+    const tooltip = document.getElementById('galleryTooltip');
+    const tooltipTitle = document.getElementById('tooltipTitle');
+    const tooltipDesc = document.getElementById('tooltipDesc');
+
+    galleryData.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'full-gallery-item';
+      
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.title;
+      img.className = 'full-gallery-img';
+      
+      el.appendChild(img);
+      grid.appendChild(el);
+
+      el.addEventListener('mouseenter', (e) => {
+        tooltipTitle.textContent = item.title;
+        tooltipDesc.textContent = item.desc;
+        tooltip.classList.add('show');
+      });
+
+      el.addEventListener('mousemove', (e) => {
+        // Calculate empty space to determine tooltip position
+        const tooltipWidth = 300;
+        const tooltipHeight = tooltip.offsetHeight || 150;
+        
+        let x = e.clientX;
+        let y = e.clientY - tooltipHeight - 20; // Default: above cursor
+        
+        // If not enough space above, show below
+        if (y < 10) {
+          y = e.clientY + 30;
+        }
+        
+        // Keep within horizontal bounds
+        const halfWidth = tooltipWidth / 2;
+        if (x - halfWidth < 10) x = halfWidth + 10;
+        if (x + halfWidth > window.innerWidth - 10) x = window.innerWidth - halfWidth - 10;
+
+        tooltip.style.left = `${x}px`;
+        tooltip.style.top = `${y}px`;
+        tooltip.style.transform = 'translate(-50%, 0)';
+      });
+
+      el.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('show');
+      });
+    });
   </script>
 </body>
 </html>
