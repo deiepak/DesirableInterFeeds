@@ -30,12 +30,13 @@
       max-width: 600px;
       margin: 0 auto;
       font-size: 1.1rem;
+      padding: 0 1rem;
     }
     .full-gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      padding: 3rem 0;
+      padding: 3rem 1rem;
     }
     .full-gallery-item {
       position: relative;
@@ -43,8 +44,9 @@
       box-shadow: var(--shadow-sm);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       background: var(--color-surface);
-      height: 250px;
+      
       cursor: pointer;
+      overflow: hidden;
     }
     .full-gallery-item:hover {
       transform: translateY(-5px);
@@ -53,14 +55,17 @@
     }
     .full-gallery-img {
       width: 100%;
-      height: 100%;
+      height: 250px;
       object-fit: cover;
       display: block;
       border-radius: 12px;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.3s ease, transform 0.5s ease;
+    }
+    .full-gallery-item:hover .full-gallery-img {
+      transform: scale(1.05);
     }
     
-    /* Dynamic floating tooltip styles */
+    /* Dynamic floating tooltip styles (Desktop) */
     .gallery-tooltip {
       position: fixed;
       background: rgba(18, 48, 74, 0.95);
@@ -86,8 +91,40 @@
     .gallery-tooltip-title {
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--color-tertiary-light);
+      color: var(--color-dark);
       margin-bottom: 0.5rem;
+    }
+
+    /* Mobile Caption (Shows inside image on touch devices) */
+    .mobile-caption {
+      display: none;
+      position: static;
+       
+       
+       
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      padding: 1rem;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+    .mobile-caption strong {
+      display: block;
+      color: var(--color-dark);
+      margin-bottom: 0.25rem;
+      font-size: 1rem;
+    }
+
+    @media (hover: none) and (pointer: coarse), (max-width: 768px) {
+      .gallery-tooltip {
+        display: none !important;
+      }
+      .mobile-caption {
+        display: block;
+      }
+      .full-gallery-item:hover {
+        transform: none;
+      }
     }
 
     .back-nav {
@@ -123,7 +160,7 @@
     </div>
   </section>
 
-  <!-- The Tooltip -->
+  <!-- The Tooltip (Desktop) -->
   <div class="gallery-tooltip" id="galleryTooltip">
     <div class="gallery-tooltip-title" id="tooltipTitle"></div>
     <div id="tooltipDesc"></div>
@@ -185,16 +222,25 @@
       img.alt = item.title;
       img.className = 'full-gallery-img';
       
+      const mobileCap = document.createElement('div');
+      mobileCap.className = 'mobile-caption';
+      mobileCap.innerHTML = `<strong>${item.title}</strong>${item.desc}`;
+
       el.appendChild(img);
+      el.appendChild(mobileCap);
       grid.appendChild(el);
 
+      // Desktop events
       el.addEventListener('mouseenter', (e) => {
+        if (window.innerWidth <= 768 || window.matchMedia("(hover: none)").matches) return;
         tooltipTitle.textContent = item.title;
         tooltipDesc.textContent = item.desc;
         tooltip.classList.add('show');
       });
 
       el.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768 || window.matchMedia("(hover: none)").matches) return;
+        
         // Calculate empty space to determine tooltip position
         const tooltipWidth = 300;
         const tooltipHeight = tooltip.offsetHeight || 150;
