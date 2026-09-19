@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore the Desirable Inter-Feeds media gallery. See our premium livestock, feed formulations, civil engineering projects, and contract farming operations in Zimbabwe.">
+  <meta name="keywords" content="Desirable Inter-Feeds gallery, Zimbabwe contract farming, livestock feed photos, broiler chickens, premium cattle, agriculture pictures">
+  <title>Media Gallery | Desirable Inter-Feeds (Pvt) Ltd</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    .gallery-page-header {
+      padding: 6rem 0 3rem;
+      text-align: center;
+      background: var(--color-dark);
+      color: #fff;
+    }
+    .gallery-page-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .gallery-page-desc {
+      color: var(--color-text-light);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+    .full-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 3rem 0;
+    }
+    .full-gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: var(--color-surface);
+      height: 250px;
+    }
+    .full-gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    .full-gallery-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .full-gallery-item:hover .full-gallery-img {
+      transform: scale(1.05);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 1.5rem 1rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .full-gallery-item:hover .gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .back-nav {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-primary-light);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .back-nav:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  
+  <header class="gallery-page-header">
+    <div class="container">
+      <h1 class="gallery-page-title">Operations Gallery</h1>
+      <p class="gallery-page-desc">A visual journey through our contract farming, premium livestock breeding, nutritional formulations, and infrastructure developments.</p>
+      <a href="index.html" class="back-nav"><i data-lucide="arrow-left"></i> Back to Main Site</a>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="full-gallery-grid">
+        <!-- Gallery Items generated from Media folder -->
+        <div class="full-gallery-item"><img src="Media/chicken coops.jpeg" alt="Chicken Coops" class="full-gallery-img"><div class="gallery-caption">Chicken Coops</div></div>
+        <div class="full-gallery-item"><img src="Media/chicken farms.jpeg" alt="Chicken Farms" class="full-gallery-img"><div class="gallery-caption">Chicken Farms</div></div>
+        <div class="full-gallery-item"><img src="Media/chickens.jpeg" alt="Premium Chickens" class="full-gallery-img"><div class="gallery-caption">Premium Chickens</div></div>
+        <div class="full-gallery-item"><img src="Media/clients being delivered premium dustless feed.jpeg" alt="Feed Delivery" class="full-gallery-img"><div class="gallery-caption">Premium Dustless Feed Delivery</div></div>
+        <div class="full-gallery-item"><img src="Media/cows.jpeg" alt="Cattle Care" class="full-gallery-img"><div class="gallery-caption">Premium Cattle</div></div>
+        <div class="full-gallery-item"><img src="Media/day old chicks.jpeg" alt="Day Old Chicks" class="full-gallery-img"><div class="gallery-caption">Day Old Chicks</div></div>
+        <div class="full-gallery-item"><img src="Media/delivering lambs.jpeg" alt="Delivering Lambs" class="full-gallery-img"><div class="gallery-caption">Delivering Lambs</div></div>
+        <div class="full-gallery-item"><img src="Media/discussions.jpeg" alt="Team Discussions" class="full-gallery-img"><div class="gallery-caption">Team Discussions</div></div>
+        <div class="full-gallery-item"><img src="Media/feeds.jpeg" alt="Livestock Feeds" class="full-gallery-img"><div class="gallery-caption">Nutritional Livestock Feeds</div></div>
+        <div class="full-gallery-item"><img src="Media/formula making.jpeg" alt="Formula Making" class="full-gallery-img"><div class="gallery-caption">Formula Making</div></div>
+        <div class="full-gallery-item"><img src="Media/goats.jpeg" alt="Goats" class="full-gallery-img"><div class="gallery-caption">Premium Goats</div></div>
+        <div class="full-gallery-item"><img src="Media/guidance.jpeg" alt="Expert Guidance" class="full-gallery-img"><div class="gallery-caption">Expert Agronomy Guidance</div></div>
+        <div class="full-gallery-item"><img src="Media/insights sharing.jpeg" alt="Insights Sharing" class="full-gallery-img"><div class="gallery-caption">Insights Sharing</div></div>
+        <div class="full-gallery-item"><img src="Media/lab based operations.jpeg" alt="Lab Operations" class="full-gallery-img"><div class="gallery-caption">Lab Based Operations</div></div>
+        <div class="full-gallery-item"><img src="Media/logistics operations.jpeg" alt="Logistics Operations" class="full-gallery-img"><div class="gallery-caption">Logistics Operations</div></div>
+        <div class="full-gallery-item"><img src="Media/meat products output generation.jpeg" alt="Meat Products" class="full-gallery-img"><div class="gallery-caption">Meat Products Output</div></div>
+        <div class="full-gallery-item"><img src="Media/meeting clients.jpeg" alt="Meeting Clients" class="full-gallery-img"><div class="gallery-caption">Meeting Clients</div></div>
+        <div class="full-gallery-item"><img src="Media/on spot weight of chickens.jpeg" alt="Chicken Weighing" class="full-gallery-img"><div class="gallery-caption">On Spot Weight of Chickens</div></div>
+        <div class="full-gallery-item"><img src="Media/premium breed goats.jpeg" alt="Premium Breed Goats" class="full-gallery-img"><div class="gallery-caption">Premium Breed Goats</div></div>
+        <div class="full-gallery-item"><img src="Media/premium cow care.jpeg" alt="Premium Cow Care" class="full-gallery-img"><div class="gallery-caption">Premium Cow Care</div></div>
+        <div class="full-gallery-item"><img src="Media/premium farm management.jpeg" alt="Farm Management" class="full-gallery-img"><div class="gallery-caption">Premium Farm Management</div></div>
+        <div class="full-gallery-item"><img src="Media/premium hay.jpeg" alt="Premium Hay" class="full-gallery-img"><div class="gallery-caption">Premium Hay</div></div>
+        <div class="full-gallery-item"><img src="Media/proper lab infra.jpeg" alt="Lab Infrastructure" class="full-gallery-img"><div class="gallery-caption">Proper Lab Infrastructure</div></div>
+        <div class="full-gallery-item"><img src="Media/seminar.jpeg" alt="Training Seminar" class="full-gallery-img"><div class="gallery-caption">Training Seminar</div></div>
+        <div class="full-gallery-item"><img src="Media/solar.jpeg" alt="Solar Energy" class="full-gallery-img"><div class="gallery-caption">Solar Energy</div></div>
+        <div class="full-gallery-item"><img src="Media/solar 2.jpeg" alt="Solar Installation" class="full-gallery-img"><div class="gallery-caption">Solar Installation</div></div>
+        <div class="full-gallery-item"><img src="Media/vet surgery.jpeg" alt="Vet Surgery" class="full-gallery-img"><div class="gallery-caption">Vet Surgery</div></div>
+        <div class="full-gallery-item"><img src="Media/young animals raising.jpeg" alt="Raising Young Animals" class="full-gallery-img"><div class="gallery-caption">Raising Young Animals</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Desirable Inter-Feeds (Pvt) Ltd. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
