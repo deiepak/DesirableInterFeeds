@@ -142,13 +142,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .eyebrow-green {
   background-color: var(--color-light-green);
-  color: var(--color-secondary-dark);
+  color: #1e5e22;
   border: 1px solid rgba(56, 168, 62, 0.22);
 }
 
 .eyebrow-gold {
   background-color: #FBF4E6;
-  color: var(--color-tertiary-dark);
+  color: #8a651f;
   border: 1px solid rgba(217, 164, 65, 0.3);
 }
 
