@@ -8,8 +8,6 @@ Allow: /
 Disallow: /scratch/
 Disallow: /.*
 
-# Geographic & Canonical Host
-Host: https://desirableinterfeeds.co.zw
 
 # XML Sitemap Location
 Sitemap: https://desirableinterfeeds.co.zw/sitemap.xml
